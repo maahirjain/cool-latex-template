@@ -1,4 +1,4 @@
-# Cool $\LaTeX$
+# Cool $\LaTeX$ Template
 
 A cool $\LaTeX$ template for completing homework assignments.
 

@@ -1,0 +1,470 @@
+%CREATED BY MAAHIR JAIN
+
+%Template References:
+%https://draculatheme.com/latex
+%https://www.overleaf.com/latex/templates/a-soft-template-for-homework-solutions/gsbwqcqkyyzt
+%https://www.overleaf.com/latex/templates/math-problem-set-template/ykkxdtvzrmcg
+
+\documentclass[answers]{exam}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{lastpage}
+\usepackage[shortlabels]{enumitem}
+\usepackage{siunitx}
+\usepackage{nicematrix}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage[]{mdframed}
+\usepackage{amsthm}
+\usepackage{algpseudocode}
+\usepackage{mathtools}
+\usepackage{array}
+\usepackage{cancel}
+\usepackage{cases}
+\usepackage{mathtools}
+\usepackage{breqn}
+
+\RequirePackage{graphicx} 
+\RequirePackage{float} 
+\RequirePackage{xcolor} 
+\RequirePackage{tikz} 
+\RequirePackage{tikz-3dplot}
+\RequirePackage{pgfplots} 
+\RequirePackage[most]{tcolorbox}
+
+\definecolor{draculabg}      {RGB} {40,   42,   54}
+\definecolor{draculacl}      {RGB} {68,   71,   90}
+\definecolor{draculafg}      {RGB} {248,  248,  242}
+\definecolor{draculacomment} {RGB} {98,   114,  164}
+\definecolor{draculacyan}    {RGB} {139,  233,  253}
+\definecolor{draculagreen}   {RGB} {80,   250,  123}
+\definecolor{draculaorange}  {RGB} {255,  184,  108}
+\definecolor{draculapink}    {RGB} {255,  121,  198}
+\definecolor{draculapurple}  {RGB} {189,  147,  249}
+\definecolor{draculared}     {RGB} {255,  85,   85}
+\definecolor{draculayellow}  {RGB} {241,  250,  140}
+
+%Colors for dark mode
+\newcommand{\darkmode}{
+\definecolor{myDColor}{RGB} {139,  233,  253} %Define dark color
+\definecolor{myLColor}{RGB} {189,  147,  249} %Define light color
+\definecolor{myPageColor}{RGB} {40,  42,  54} %Define page color
+\definecolor{mySolColor}{RGB} {40,  42,  54} %Define text color in solution box
+\definecolor{mySSColor}{RGB} {248, 248,  242} %Define solution statement color
+\definecolor{myHColor}{RGB} {80, 250, 123} %Define highlight color
+\pagecolor{myPageColor}
+\color{draculafg} %Define color of text on page
+}
+
+%Colors for light mode
+\newcommand{\lightmode}{
+\definecolor{myDColor}{HTML}{264348} %Define dark color
+\definecolor{myLColor}{HTML}{5D8AA8} %Define light color
+\definecolor{myPageColor}{RGB} {255, 255, 255} %Define page color
+\definecolor{mySolColor}{RGB} {0, 0, 0} %Define text color in solution box
+\definecolor{mySSColor}{HTML}{264348} %Define solution statement color
+\definecolor{myHColor}{HTML} {696969} %Define highlight color
+\pagecolor{myPageColor}
+\color{black} %Define color of text on page
+}
+  
+\newcommand{\titlePage}[4]{\begingroup
+\hbox{ 
+\hspace*{0.2\textwidth}
+\textcolor{myLColor}{\rule{1pt}{\textheight}}
+\textcolor{myDColor}{\rule{3.2pt}{\textheight}}
+\hspace*{0.05\textwidth}
+\parbox[b]{0.75\textwidth}{
+
+{\noindent\Huge\bfseries \textcolor{myLColor}{#1} \\}\\[2\baselineskip] 
+{\large \textit{\textcolor{myDColor}{#2}}}\\[4\baselineskip] 
+{\large \textsc{\textcolor{myDColor}{First Last \\ \small{#3} \\ \small{#4}}}}
+
+\vspace{0.5\textheight} 
+{\noindent \textcolor{myDColor}{\href{mailto:mail@gmail.com}{mail@gmail.com}} \\ \textcolor{myDColor}{ID: XXXXXXXXXX}}\\[\baselineskip] 
+}}
+\endgroup}
+
+\newcommand{\headerline}[3]{%
+  \par\medskip\noindent
+  \makebox[0pt][l]{\textsc{\textcolor{myDColor}{#1}}}%
+  \makebox[\textwidth][c]{\textsc{\textcolor{myDColor}{#2}}}%
+  \makebox[0pt][r]{\textsc{\textcolor{myDColor}{#3}}}\medskip\textcolor{myDColor}{\hrule}}
+
+\newtheorem{lemma}[section]{Lemma}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand*\colorcircled[2]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt,fill=#1] (char) {#2};}}
+  
+\newcommand{\pt}[1]{\vspace{-0.8em}\textcolor{myDColor}{[#1 points]} \\\\}
+\newcommand{\pte}[1]{\vspace{-0.8em}\textcolor{myDColor}{[#1 points each]} \\\\}
+\newcommand{\itempt}[1]{\textcolor{myDColor}{(#1 points)\;}}
+\newcommand{\itempte}[1]{\textcolor{myDColor}{(#1 points each)\;}}
+
+\newcommand{\onept}[0]{\vspace{-0.8em}\textcolor{myDColor}{[1 point]} \\\\}
+\newcommand{\onepte}[0]{\vspace{-0.8em}\textcolor{myDColor}{[1 point each]} \\\\}
+\newcommand{\oneitempt}[0]{\textcolor{myDColor}{(1 point)\;}}
+\newcommand{\oneitempte}[0]{\textcolor{myDColor}{(1 point each)\;}}
+
+\newcommand{\stcomp}[1]{{#1}^{\mathsf{c}}} 
+
+\newcommand{\lcm}[1]{\text{lcm}(#1)} 
+\renewcommand{\gcd}[1]{\text{gcd}(#1)} 
+
+\newcommand{\qedend}{
+   \vspace{-2\baselineskip}
+   \begin{flalign}
+   && \blacksquare \notag
+   \end{flalign}
+   \vspace{-\baselineskip}
+}
+
+\newcommand{\bigo}[1]{\mathcal{O}(#1)}
+
+\renewcommand{\qed}{
+   $\blacksquare$\\
+}
+
+\newenvironment{colored}[1][]{
+    \bgroup\color{#1}
+}{
+\egroup\vspace{-0.8em}
+}
+
+
+\newcommand{\case}[1]{\noindent \textbf{\underline{#1}}\\}
+
+\newcommand{\casespace}{\\[0.5em]}
+
+\newenvironment{tableproof}[1][10pt]{
+    \setlength{\tabcolsep}{#1}
+    \begin{tabular}[t]{rl|l}
+}{
+\end{tabular}\vspace{1em}
+}
+
+\newtcolorbox{answer}[1][]{%
+    enhanced,
+    skin first=enhanced,
+    skin middle=enhanced,
+    skin last=enhanced,
+    before upper={\parindent15pt},
+    breakable,
+    boxrule = 0pt,
+    frame hidden,
+    borderline west = {4pt}{0pt}{myDColor},
+    colback = myLColor!25,
+    coltitle = myLColor!5,
+    sharp corners,
+    arc is angular,
+    arc = 3mm,
+    attach boxed title to top left,
+    boxed title style = {%
+        enhanced,
+        colback = myDColor,
+        colframe = myDColor,
+        top = 0pt,
+        bottom = 0pt,
+        sharp corners,
+        rounded corners = northeast,
+        arc is angular,
+        arc = 2mm,
+        rightrule = 0pt,
+        bottomrule = 0pt,
+        toprule = 0pt,
+    },
+    title = {\bfseries\large\textcolor{myPageColor}{Solution:}}, 
+    overlay unbroken={%
+        \node[anchor=west, mySSColor, font = {\bfseries\large}] at (title.east) {#1};
+        \path[fill = tcbcolback!80!black] ;
+    },
+    overlay first = {%
+        \node[anchor=west, color=black!70] at (title.east) {#1};
+        \path[fill = tcbcolback!80!black] ;
+    },
+    overlay middle={%
+        \path[fill = tcbcolback!80!black] ;
+        \path[fill = tcbcolback!80!black] ;
+    },
+    overlay last={%
+        \path[fill = tcbcolback!80!black] ;
+        \path[fill = tcbcolback!80!black] ;
+    },
+}
+
+\newcommand{\titleHeader}[5]{\titlePage{#1}{#2}{#4}{#5}
+\lhead{\headerline{#2 #1}{First Last}{#3}}\bigskip}
+
+\newenvironment{problem}[1][Problem]{\section*{\textcolor{myLColor}{#1}}}{\vspace{0.2em}}
+
+\renewenvironment{solution}[1][]{\begin{answer}[#1]\begin{colored}[mySolColor]}{\end{colored}\end{answer}\vspace{1em}}
+
+%Use \continued within solutions that go to the next page
+\newcommand{\continued}{
+\begin{flushright}
+    \textit{Continued on next page...}
+\end{flushright}
+\pagebreak}
+
+\newcommand{\hlinespace}{\\[0.3em]\hline \rule{0pt}{\normalbaselineskip}}
+
+\newcommand{\pto}{
+\begin{flushright}
+    \textit{\textcolor{myDColor}{Please turn over...}}
+\end{flushright}\pagebreak}
+
+\newcommand{\decorend}{\vspace{1em}\noindent \textcolor{myDColor}{\hrulefill ~$\;\,_\circledast$~ \hrulefill ~$\;\,_\circledast$~ \hrulefill ~$\;\,_\circledast$~ \hrulefill}\cfoot{}}
+
+\newcommand{\defspace}[1]{\gdef\tmpbox{#1}}
+\newcommand{\talign}[2]{\hbox to0pt {#1}\hphantom{\tmpbox}#2}
+
+\newcommand*{\carry}[1][1]{\overset{#1}}
+\newcolumntype{B}[1]{r*{#1}{@{\,}r}}
+
+\newenvironment{casebox}{\begin{mdframed}[backgroundcolor=myLColor!25]}{\end{mdframed}}
+
+\renewcommand{\emptyset}{\varnothing}
+
+\cfoot{\textcolor{myDColor}{Page \thepage\ of \pageref{LastPage}}}
+
+\clearpage
+
+\thispagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\darkmode %Choose \darkmode or \lightmode
+
+\titleHeader{Homework X}{CS XXXX}{Month Day, Year}{No Collaborators}{No Outside Sources}
+
+\begin{problem}[Problem 1]
+    \pt{16}
+    Vikings always tell the truth and Saxons always lie.  Given the following information, use a truth table to determine what type each person is or if their status cannot be determined.  Be sure to provide a conclusion based on your work.\\
+
+    \noindent \textbf{Person A says:} Nothing.\\
+    \textbf{Person B says: }``C is not a Viking if I am a Viking."\\
+    \textbf{Person C says: }``If I or B is a Viking, then A is a Viking."\\
+\end{problem}
+
+\begin{solution}
+    \renewcommand{\arraystretch}{1.5}
+    \noindent Let $a$ be the proposition ``Person A is a Viking", let $b$ be the proposition ``Person B is a Viking" and let $c$ be the proposition ``Person C is a Viking". \\
+    
+    \noindent We can then represent the statement of Person B as $(b \rightarrow \neg c)$, and the statement of Person A as $((c \vee b) \rightarrow a)$.\\
+
+    \noindent Thus, we can construct a truth table to examine the possible scenarios, as follows:
+    
+    \begin{center}
+        \begin{NiceTabular}{ccccccc}[hvlines, rounded-corners, rules/color=black]
+           \CodeBefore
+           \rowcolor{myHColor!75}{7}
+           \Body
+           \RowStyle[bold]{}
+           $a$ & $b$ & $c$ & $\neg c$ & $(c \vee b)$ & $(b \rightarrow \neg c)$ & $(c \vee b) \rightarrow a$\\
+           T & T & T & F & T & F & T\\
+           T & T & F & T & T & T & T\\
+           T & F & T & F & T & T & T\\
+           T & F & F & T & F & T & T\\
+           F & T & T & F & T & F & F\\
+           F & \colorcircled{myDColor!75}{T} & \colorcircled{myLColor!75}{F} & T & T & \colorcircled{myDColor!75}{T} & \colorcircled{myLColor!75}{F}\\
+           F & F & T & F & T & T & F\\
+           F & F & F & T & F & T & T
+       \end{NiceTabular}
+   \end{center}
+
+   \noindent Under the assumption that there are people that are neither Vikings nor Saxons, we cannot determine the types of either Person A, Person B, or Person C. However, if we assume that Vikings and Saxons are the only people to exist, we can make the following observation:\\
+
+   \noindent We note that if ``Person X is a Viking" is true, then the statement that Person X makes must also be true. Similarly, if ``Person X is not a Viking" is true, then Person X must be a Saxon, and thus, the statement that Person X makes must be false. In other words, the only possibilities are those such that $b \equiv (b \rightarrow \neg c)$ and $c \equiv ((c \vee b) \rightarrow a)$. We observe that this is true only in \colorbox{myHColor!75}{row 7}, leading to the conclusion that
+
+   \begin{center}
+       \fbox{Person A is a Saxon, Person B is a Viking, and Person C is a Saxon}
+   \end{center}
+\end{solution}
+
+\pto
+
+\begin{problem}[Problem 2]
+    \pte{6} 
+    \noindent For each of the following statements, push all negations $(\neg)$ as far as possible so that no negation is to the left of a quantifier (in other words, the negation is immediately to the left of a predicate). Make sure to cite all steps.
+    \begin{enumerate}[(a)]
+        \item $\neg \forall x (\exists y A(x,y) \land \neg \exists z B(z,x))$ 
+        \item $\neg \exists x (\forall y A(y,x) \rightarrow \neg \forall z C(z,x))$
+        \item $\neg \exists x (\neg \forall y (B(y,x) \rightarrow \exists z D(z,y)) \land \forall w E(w,x))$
+    \end{enumerate}
+\end{problem}
+
+\begin{solution}
+    \begin{enumerate}[(a)]
+        \item ~
+
+        \vspace{-3\baselineskip}
+        \begin{align}
+            & \quad \; \neg \forall x (\exists y A(x,y) \land \neg \exists z B(z,x)) \notag\\
+            & \equiv \exists x \neg (\exists y A(x,y) \land \neg \exists z B(z,x)) \tag{De Morgan's Law for Quantifiers}\\
+            & \equiv \exists x (\neg\exists y A(x,y) \vee \neg \neg\exists z B(z,x)) \tag{De Morgan's Law for Propositions}\\
+            & \equiv \exists x (\neg\exists y A(x,y) \vee \exists z B(z,x)) \tag{Double Negation Law}\\
+            & \equiv \boxed{\exists x (\forall y \neg A(x,y) \vee \exists z B(z,x))} \tag{De Morgan's Law for Quantifiers}
+        \end{align}
+
+        \item ~
+
+        \vspace{-3\baselineskip}
+        \begin{align}
+            & \quad\; \neg \exists x (\forall y A(y,x) \rightarrow \neg \forall z C(z,x)) \notag \\
+            & \equiv \forall x \neg(\forall y A(y,x) \rightarrow \neg \forall z C(z,x)) \tag{De Morgan's Law for Quantifiers}\\
+            & \equiv \forall x \neg(\neg\forall y A(y,x) \vee \neg \forall z C(z,x)) \tag{Conditional Disjunction}\\
+            & \equiv \forall x (\neg\neg\forall y A(y,x) \wedge \neg\neg\forall z C(z,x)) \tag{De Morgan's Law for Propositions}\\
+            & \equiv \forall x (\forall y A(y,x) \wedge \neg\neg\forall z C(z,x)) \tag{Double Negation Law}\\
+            & \equiv \boxed{\forall x (\forall y A(y,x) \wedge \forall z C(z,x))} \tag{Double Negation Law}
+        \end{align}
+
+        \item ~
+
+        \vspace{-3\baselineskip}
+        \begin{align}
+            & \quad\; \neg \exists x (\neg \forall y (B(y,x) \rightarrow \exists z D(z,y)) \land \forall w E(w,x)) \notag \\
+            & \equiv \forall x \neg(\neg \forall y (B(y,x) \rightarrow \exists z D(z,y)) \land \forall w E(w,x)) \tag{De Morgan's Law for Quantifiers}\\
+            & \equiv \forall x \neg(\neg \forall y (\neg B(y,x) \vee \exists z D(z,y)) \land \forall w E(w,x)) \tag{Conditional Disjunction}\\
+            & \equiv \forall x (\neg\neg \forall y (\neg B(y,x) \vee \exists z D(z,y)) \vee \neg\forall w E(w,x)) \tag{De Morgan's Law for Propositions}\\
+            & \equiv \forall x (\forall y (\neg B(y,x) \vee \exists z D(z,y)) \vee \neg\forall w E(w,x)) \tag{Double Negation Law}\\
+            & \equiv \boxed{\forall x (\forall y (\neg B(y,x) \vee \exists z D(z,y)) \vee \exists w \neg E(w,x))} \tag{De Morgan's Law for Quantifiers}
+        \end{align}
+    \end{enumerate}
+\end{solution}
+
+\pto
+
+\begin{problem}[Problem 3]
+    \pt{18}
+    \noindent Prove the following, noted first by Cantor himself.
+    \begin{center}
+        \texttt{The power set of the natural numbers $\mathcal{P}(\mathbb{N})$ is not countable.}
+    \end{center}
+\end{problem}
+
+\begin{solution}[by contradiction]
+    \noindent We proceed with a proof by contradiction. We thus assume that there exists a bijection $f: \mathbb{N} \to \mathcal{P}(\mathbb{N})$.\\
+
+    \noindent Let $n \in \mathbb{N}$ and $S \in \mathcal{P}(\mathbb{N})$. Since $f$ is a bijection, $\forall S (\exists n f(n) = S)$. We now consider the set $B = \{n \in \mathbb{N} \;|\; n \not\in f(n)\}$. Since $B$ is constructed by choosing elements of $\mathbb{N}$, $B \in \mathcal{P}(\mathbb{N})$. Additionally, $\forall n (n \in B \iff n \not\in f(n))$. Hence, $\forall n (f(n) \neq B)$. Therefore, by construction, we have shown that $\exists S(\forall n f(n) \neq S)$. This is equivalent to $\neg(\forall S (\exists n f(n) = S))$.\\
+
+    \noindent Hence, we have shown $\forall S (\exists n f(n) = S)$ and $\neg(\forall S (\exists n f(n) = S))$, that is, $P$ and $\neg P$ -- a contradiction. We can thus assume that our initial assumption was false and that there does not exist a bijection between $\mathbb{N}$ and $\mathcal{P}(\mathbb{N})$. This allows us to conclude that the power set of the natural numbers $\mathcal{P}(\mathbb{N})$ is not countable.\qed
+\end{solution}
+
+\pto
+
+\begin{problem}[Problem 4]
+    \pt{16} Let $n \in \mathbb{Z}$. Prove or disprove that if $n$ is odd, then $64 \mid (2n^2 + 22)(n^2 + 15)$.
+\end{problem}
+
+\begin{solution}[by cases]
+    \noindent We use a proof by cases with a direct proof in each case to demonstrate that if $n$ is odd, then $64 \mid (2n^2 + 22)(n^2 + 15)$. We assume that $n = 2k + 1, k \in \mathbb{Z}$.\\
+
+    \noindent We perform a series of algebraic simplifications on $(2n^2 + 22)(n^2 + 15)$, as follows:
+    \begin{align*}
+        (2n^2 + 22)(n^2 + 15) &= (2(2k + 1)^2 + 22)((2k + 1)^2 + 15)\\
+        &= (2(4k^2 + 4k + 1) + 22)(4k^2 + 4k + 1 + 15)\\
+        &= (8k^2 + 8k + 2 + 22)(4k^2 + 4k + 1 + 15)\\
+        &= (8k^2 + 8k + 24)(4k^2 + 4k + 16)\\
+        &= 8(k^2 + k + 3) \cdot 4(k^2 + k + 4)\\
+        &= 32(k^2 + k + 3)(k^2 + k + 4)
+    \end{align*}
+
+    \noindent We now consider two cases.
+
+    \begin{mdframed}[backgroundcolor=myLColor!25]
+    \case{Case 1: $k$ is odd}
+    We assume $k = 2q + 1, q \in \mathbb{Z}$. Hence, we have
+        \begin{align*}
+        32(k^2 + k + 3)(k^2 + k + 4) &= 32(k^2 + k + 3)((2q + 1)^2 + (2q + 1) + 4)\\
+        &= 32(k^2 + k + 3)(4q^2 + 4q + 1 + 2q + 1 + 4)\\
+        &= 32(k^2 + k + 3)(4q^2 + 6q + 6)\\
+        &= 32(k^2 + k + 3) \cdot 2(2q^2 + 3q + 3)\\
+        &= 64(k^2 + k + 3)(2q^2 + 3q + 3)
+    \end{align*}
+
+    \noindent Therefore, in this case, by definition, $64 \mid (2n^2 + 22)(n^2 + 15)$.\\
+    
+    \case{Case 2: $k$ is even}
+    We assume $k = 2q, q \in \mathbb{Z}$. Hence, we have
+        \begin{align*}
+        32(k^2 + k + 3)(k^2 + k + 4) &= 32(k^2 + k + 3)((2q)^2 + (2q) + 4)\\
+        &= 32(k^2 + k + 3)(4q^2 + 2q + 4)\\
+        &= 32(k^2 + k + 3) \cdot 2(2q^2 + q + 2)\\
+        &= 64(k^2 + k + 3)(2q^2 + q + 2)
+    \end{align*}
+
+    \noindent Therefore, in this case, by definition, $64 \mid (2n^2 + 22)(n^2 + 15)$.
+    \end{mdframed}
+
+    \noindent As we shown by direct proof in each case that $(2n^2 + 22)(n^2 + 15)$ is a multiple of 64, we can conclude that $64 \mid (2n^2 + 22)(n^2 + 15)$.\qed
+\end{solution}
+
+\pto
+
+\begin{problem}[Problem 5]
+    \pt{16} We say a function $f$ is big-Theta of another function $g$ if it holds that $f = \bigo{g}$ and $g = \bigo{f}$ simultaneously. Show that $n\log(n)$ is $\Theta(\log n!)$.
+\end{problem}
+
+\begin{solution}[by witnesses]
+    \noindent Let $f(n) = n \log (n)$ and $g(n) = \log n!$, where $n \in \mathbb{N}^{+}$. We have \begin{align}
+        \log n! &= \log \left(\prod_{i = 1}^n i\right) \tag{Definition of $n!$}\\
+        &= \sum_{i = 1}^n \log(i) \tag{$\log(ab) = \log(a) + \log(b)$}\\
+        &\le \sum_{i = 1}^n \log(n) \tag{$i \in \{1, 2, 3, \ldots, n\} \implies \log(i) \le \log(n)$}\\
+        &\le \log(n) \sum_{i = 1}^n 1 \tag{$\log(n)$ is constant}\\
+        &\le \log(n) \times n \tag{$\sum_{i = 1}^n 1 = n$}\\
+        &\le n\log(n) \tag{Commutativity of multiplication}
+    \end{align}
+
+    \noindent Given $n \in \mathbb{N}^{+}$, we have demonstrated that $\forall n (\log n! \le n\log n)$. Hence, with witnesses $C = 1, k = 1$, $\log n!$ is $\bigo{n \log n}$.
+    \begin{align*}
+        2\log(n!) &= \log\left((n!)^2\right) \tag{$c\log(a) = \log(a^c)$}\\
+        &= \log(n! \cdot n!) \tag{$a^2 = a \cdot a$}\\
+        &= \log \left(\left(\prod_{i = 1}^n i\right) \cdot \left(\prod_{k = 0}^{n - 1} (n - k)\right)\right) \tag{Definition of $n!$}\\
+        &= \log \left(\left(\prod_{i = 1}^n i\right) \cdot \left(\prod_{i = 1}^{n - 1} (n - i + 1)\right)\right) \tag{Setting $k = i - 1$}\\
+        &= \log \left(\left(\prod_{i = 1}^n i\right) \cdot \left(\prod_{i = 1}^{n} (n - i + 1)\right)\right) \tag{$n - n + 1 = 1$}\\
+        &= \log \left(\prod_{i = 1}^n i(n - i + 1)\right) \tag{Same indices for products}\\
+        &\ge \log \left(\prod_{i = 1}^n n\right) \tag{$i(n - i) \ge n - i \implies i(n - i + 1) \ge n$}\\
+        &\ge \log (n^n) \tag{$\prod_{i = 1}^n n = n^n$}\\
+        &\ge n \log n \tag{$\log(a^c)= c\log(a)$}
+    \end{align*}
+
+    \noindent Given $n \in \mathbb{N}^{+}$, we have demonstrated that $\forall n (2 \log n! \ge n\log n)$. Hence, with witnesses $C = 2, k = 1$, $n \log n$ is $\bigo{\log n!}$.\\
+
+    \noindent As we have shown that $f$ is $\bigo{g}$, and $g$ is $\bigo{f}$, we can conclude that $f$ is $\Theta(g)$, that is, $n\log(n)$ is $\Theta(\log n!)$.\qed
+\end{solution}
+
+\pagebreak
+
+\begin{problem}[Problem 6]
+    \pt{16} Let $f$ and $g$ be functions such that $f(x) = 3^{5x}$, where $f: \mathbb{R} \rightarrow \mathbb{R}$ and $g(x) = x^5$, where $g: \mathbb{R^+} \rightarrow \mathbb{R}$.\\
+    
+    \noindent Determine whether $g(x)$ is $O(f(x))$. Justify your answer using witnesses. If $g(x)$ is not $O(f(x))$ then show an argument using a proof by contradiction using witnesses as to why $g(x)$ is not $O(f(x))$.
+\end{problem}
+
+\begin{solution}[by witnesses]
+    \noindent We proceed using a proof by witnesses to show that $g(x)$ is $\bigo{f(x)}$ where $f(x) = 3^{5x}$, $f: \mathbb{R} \rightarrow \mathbb{R}$ and $g(x) = x^5$, $g: \mathbb{R^+} \rightarrow \mathbb{R}$.\\
+
+    \begin{tableproof}
+    \defspace{$5\log(x) \le (5\log(3))x$}
+        1) & \talign{$\log(x) \le x$}{\quad $\forall x > 1$} & $x$ grows faster than $\log(x)$ and $1 > \log(1)$\\
+        2) & \talign{$5\log(x) \le 5x$}{\quad $\forall x > 1$} & Multiplying both sides in 1) by 5\\
+        3) & \talign{$5\log(x) \le (5\log(3))x$}{\quad $\forall x > 1$} & Multiplying the RHS in 2) by $\log(3) > 1$\\
+        4) & \talign{$\log(x^5) \le (\log(3^5))x$}{\quad $\forall x > 1$} & Applying the property $a\log(b) = \log(b^a)$ on 3)\\
+        5) & \talign{$2^{\log(x^5)} \le 2^{(\log(3^5))x}$}{\quad $\forall x > 1$} & Raising both sides of 4) to the power of 2\\
+        6) & \talign{$2^{\log(x^5)} \le \left(2^{\log\left(3^5\right)}\right)^x$}{\quad $\forall x > 1$} & Rewriting the RHS in 5) using $a^{bc} = \left(a^{b}\right)^c$\\
+        7) & \talign{$x^5 \le \left(3^5\right)^x$}{\quad $\forall x > 1$} & Applying $2^{\log(f(x))} = f(x)$ on 6)\\
+        8) & \talign{$x^5 \le 3^{5x}$}{\quad $\forall x > 1$} & Rewriting the RHS in 7) using $\left(a^{b}\right)^c = a^{bc}$\hlinespace
+        $\therefore$ & $x^5$ is $\bigo{3^{5x}}$ & Witnesses $C = 1, k = 1$
+    \end{tableproof}
+
+    \noindent We have demonstrated that $x^5$ is $\bigo{3^{5x}}$ using witnesses $C = 1, k = 1$, that is, we have shown that there exists $C, k$ such that for all $x > k$, $|g(x)| \le C|f(x)|$. Hence, we can conclude by the definition of Big-O that $g(x)$ is $\bigo{f(x)}$.\qed
+\end{solution}
+
+\decorend
+
+\end{document}
